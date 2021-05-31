@@ -52,7 +52,7 @@ namespace InventarioItems.Forms
 
             if (SqlMethods.ValidExist(ComputadoraREgMod) == true)
             {
-                MessageBox.Show("Ya existen computadoras reigstradaos con los valores digitados, favor revisar serial y Machine Name");
+                MessageBox.Show("Ya existen computadoras registradas con los valores digitados, favor revisar serial y Machine Name");
             }
             else
             {
