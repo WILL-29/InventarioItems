@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="InventarioModelStoreContainer" CdmEntityContainer="InventarioEntities">
+    <EntitySetMapping Name="TBL_Brands">
+      <EntityTypeMapping TypeName="InventarioModel.TBL_Brands">
+        <MappingFragment StoreEntitySet="TBL_Brands">
+          <ScalarProperty Name="ID_Brand" ColumnName="ID_Brand" />
+          <ScalarProperty Name="Brand" ColumnName="Brand" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_Companies">
+      <EntityTypeMapping TypeName="InventarioModel.TBL_Companies">
+        <MappingFragment StoreEntitySet="TBL_Companies">
+          <ScalarProperty Name="ID_Company" ColumnName="ID_Company" />
+          <ScalarProperty Name="Company_Name" ColumnName="Company_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_Computer_Types">
+      <EntityTypeMapping TypeName="InventarioModel.TBL_Computer_Types">
+        <MappingFragment StoreEntitySet="TBL_Computer_Types">
+          <ScalarProperty Name="ID_Type" ColumnName="ID_Type" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_Computers">
+      <EntityTypeMapping TypeName="InventarioModel.TBL_Computers">
+        <MappingFragment StoreEntitySet="TBL_Computers">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="User_assign_ID" ColumnName="User_assign_ID" />
+          <ScalarProperty Name="Machine_Name" ColumnName="Machine_Name" />
+          <ScalarProperty Name="Temporary" ColumnName="Temporary" />
+          <ScalarProperty Name="Return_Date" ColumnName="Return_Date" />
+          <ScalarProperty Name="Computer_Type" ColumnName="Computer_Type" />
+          <ScalarProperty Name="Brand" ColumnName="Brand" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="SN" ColumnName="SN" />
+          <ScalarProperty Name="Asset_ID" ColumnName="Asset_ID" />
+          <ScalarProperty Name="Company" ColumnName="Company" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_Employees">
+      <EntityTypeMapping TypeName="InventarioModel.TBL_Employees">
+        <MappingFragment StoreEntitySet="TBL_Employees">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="Company" ColumnName="Company" />
+          <ScalarProperty Name="Employee_Status" ColumnName="Employee_Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_History">
+      <EntityTypeMapping TypeName="InventarioModel.TBL_History">
+        <MappingFragment StoreEntitySet="TBL_History">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+          <ScalarProperty Name="Item_Type" ColumnName="Item_Type" />
+          <ScalarProperty Name="Device_ID" ColumnName="Device_ID" />
+          <ScalarProperty Name="Acquisition_Date" ColumnName="Acquisition_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_Monitors">
+      <EntityTypeMapping TypeName="InventarioModel.TBL_Monitors">
+        <MappingFragment StoreEntitySet="TBL_Monitors">
+          <ScalarProperty Name="ID_Monitor" ColumnName="ID_Monitor" />
+          <ScalarProperty Name="User_Assigned" ColumnName="User_Assigned" />
+          <ScalarProperty Name="Temporary" ColumnName="Temporary" />
+          <ScalarProperty Name="Return_Date" ColumnName="Return_Date" />
+          <ScalarProperty Name="Brand" ColumnName="Brand" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="Size" ColumnName="Size" />
+          <ScalarProperty Name="SN" ColumnName="SN" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Company" ColumnName="Company" />
+          <ScalarProperty Name="Asset_ID" ColumnName="Asset_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_Status">
+      <EntityTypeMapping TypeName="InventarioModel.TBL_Status">
+        <MappingFragment StoreEntitySet="TBL_Status">
+          <ScalarProperty Name="ID_Status" ColumnName="ID_Status" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_Telephones">
+      <EntityTypeMapping TypeName="InventarioModel.TBL_Telephones">
+        <MappingFragment StoreEntitySet="TBL_Telephones">
+          <ScalarProperty Name="ID_Tel" ColumnName="ID_Tel" />
+          <ScalarProperty Name="Brand" ColumnName="Brand" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="SN" ColumnName="SN" />
+          <ScalarProperty Name="User_Assigned" ColumnName="User_Assigned" />
+          <ScalarProperty Name="Temporary" ColumnName="Temporary" />
+          <ScalarProperty Name="Return_Date" ColumnName="Return_Date" />
+          <ScalarProperty Name="Status_Tel" ColumnName="Status_Tel" />
+          <ScalarProperty Name="Company" ColumnName="Company" />
+          <ScalarProperty Name="Asset_ID" ColumnName="Asset_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,1007 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="InventarioModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TBL_Brands">
+          <Key>
+            <PropertyRef Name="ID_Brand" />
+          </Key>
+          <Property Name="ID_Brand" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Brand" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBL_Companies">
+          <Key>
+            <PropertyRef Name="ID_Company" />
+          </Key>
+          <Property Name="ID_Company" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Company_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBL_Computer_Types">
+          <Key>
+            <PropertyRef Name="ID_Type" />
+          </Key>
+          <Property Name="ID_Type" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBL_Computers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_assign_ID" Type="int" Nullable="false" />
+          <Property Name="Machine_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Temporary" Type="bit" />
+          <Property Name="Return_Date" Type="date" />
+          <Property Name="Computer_Type" Type="int" Nullable="false" />
+          <Property Name="Brand" Type="int" />
+          <Property Name="Model" Type="nvarchar" MaxLength="50" />
+          <Property Name="SN" Type="nvarchar" MaxLength="50" />
+          <Property Name="Asset_ID" Type="nvarchar" MaxLength="50" />
+          <Property Name="Company" Type="int" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
+        <EntityType Name="TBL_Employees">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Position" Type="nvarchar" MaxLength="200" />
+          <Property Name="Company" Type="int" />
+          <Property Name="Employee_Status" Type="int" />
+        </EntityType>
+        <EntityType Name="TBL_History">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_ID" Type="int" Nullable="false" />
+          <Property Name="Item_Type" Type="int" Nullable="false" />
+          <Property Name="Device_ID" Type="int" Nullable="false" />
+          <Property Name="Acquisition_Date" Type="date" />
+        </EntityType>
+        <EntityType Name="TBL_Monitors">
+          <Key>
+            <PropertyRef Name="ID_Monitor" />
+          </Key>
+          <Property Name="ID_Monitor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_Assigned" Type="int" Nullable="false" />
+          <Property Name="Temporary" Type="bit" />
+          <Property Name="Return_Date" Type="date" />
+          <Property Name="Brand" Type="int" />
+          <Property Name="Model" Type="nvarchar" MaxLength="50" />
+          <Property Name="Size" Type="int" />
+          <Property Name="SN" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="int" />
+          <Property Name="Company" Type="int" />
+          <Property Name="Asset_ID" Type="nvarchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="TBL_Status">
+          <Key>
+            <PropertyRef Name="ID_Status" />
+          </Key>
+          <Property Name="ID_Status" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBL_Telephones">
+          <Key>
+            <PropertyRef Name="ID_Tel" />
+          </Key>
+          <Property Name="ID_Tel" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Brand" Type="int" />
+          <Property Name="Model" Type="nvarchar" MaxLength="50" />
+          <Property Name="SN" Type="nvarchar" MaxLength="50" />
+          <Property Name="User_Assigned" Type="int" />
+          <Property Name="Temporary" Type="bit" />
+          <Property Name="Return_Date" Type="date" />
+          <Property Name="Status_Tel" Type="int" />
+          <Property Name="Company" Type="int" />
+          <Property Name="Asset_ID" Type="nvarchar" MaxLength="25" />
+        </EntityType>
+        <Association Name="FK_TBL_Computers_TBL_Brands">
+          <End Role="TBL_Brands" Type="Self.TBL_Brands" Multiplicity="0..1" />
+          <End Role="TBL_Computers" Type="Self.TBL_Computers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Brands">
+              <PropertyRef Name="ID_Brand" />
+            </Principal>
+            <Dependent Role="TBL_Computers">
+              <PropertyRef Name="Brand" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Computers_TBL_Companies">
+          <End Role="TBL_Companies" Type="Self.TBL_Companies" Multiplicity="0..1" />
+          <End Role="TBL_Computers" Type="Self.TBL_Computers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Companies">
+              <PropertyRef Name="ID_Company" />
+            </Principal>
+            <Dependent Role="TBL_Computers">
+              <PropertyRef Name="Company" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Computers_TBL_Computer_Types">
+          <End Role="TBL_Computer_Types" Type="Self.TBL_Computer_Types" Multiplicity="1" />
+          <End Role="TBL_Computers" Type="Self.TBL_Computers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Computer_Types">
+              <PropertyRef Name="ID_Type" />
+            </Principal>
+            <Dependent Role="TBL_Computers">
+              <PropertyRef Name="Computer_Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Computers_TBL_Employees">
+          <End Role="TBL_Employees" Type="Self.TBL_Employees" Multiplicity="1" />
+          <End Role="TBL_Computers" Type="Self.TBL_Computers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Employees">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_Computers">
+              <PropertyRef Name="User_assign_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Computers_TBL_Status">
+          <End Role="TBL_Status" Type="Self.TBL_Status" Multiplicity="0..1" />
+          <End Role="TBL_Computers" Type="Self.TBL_Computers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Status">
+              <PropertyRef Name="ID_Status" />
+            </Principal>
+            <Dependent Role="TBL_Computers">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Employees_TBL_Companies">
+          <End Role="TBL_Companies" Type="Self.TBL_Companies" Multiplicity="0..1" />
+          <End Role="TBL_Employees" Type="Self.TBL_Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Companies">
+              <PropertyRef Name="ID_Company" />
+            </Principal>
+            <Dependent Role="TBL_Employees">
+              <PropertyRef Name="Company" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_History_TBL_Computers">
+          <End Role="TBL_Computers" Type="Self.TBL_Computers" Multiplicity="1" />
+          <End Role="TBL_History" Type="Self.TBL_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Computers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_History">
+              <PropertyRef Name="Device_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_History_TBL_Employees">
+          <End Role="TBL_Employees" Type="Self.TBL_Employees" Multiplicity="1" />
+          <End Role="TBL_History" Type="Self.TBL_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Employees">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_History">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_History_TBL_Monitors">
+          <End Role="TBL_Monitors" Type="Self.TBL_Monitors" Multiplicity="1" />
+          <End Role="TBL_History" Type="Self.TBL_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Monitors">
+              <PropertyRef Name="ID_Monitor" />
+            </Principal>
+            <Dependent Role="TBL_History">
+              <PropertyRef Name="Device_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_History_TBL_Telephones">
+          <End Role="TBL_Telephones" Type="Self.TBL_Telephones" Multiplicity="1" />
+          <End Role="TBL_History" Type="Self.TBL_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Telephones">
+              <PropertyRef Name="ID_Tel" />
+            </Principal>
+            <Dependent Role="TBL_History">
+              <PropertyRef Name="Device_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Monitors_TBL_Brands">
+          <End Role="TBL_Brands" Type="Self.TBL_Brands" Multiplicity="0..1" />
+          <End Role="TBL_Monitors" Type="Self.TBL_Monitors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Brands">
+              <PropertyRef Name="ID_Brand" />
+            </Principal>
+            <Dependent Role="TBL_Monitors">
+              <PropertyRef Name="Brand" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Monitors_TBL_Companies">
+          <End Role="TBL_Companies" Type="Self.TBL_Companies" Multiplicity="0..1" />
+          <End Role="TBL_Monitors" Type="Self.TBL_Monitors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Companies">
+              <PropertyRef Name="ID_Company" />
+            </Principal>
+            <Dependent Role="TBL_Monitors">
+              <PropertyRef Name="Company" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Monitors_TBL_Employees">
+          <End Role="TBL_Employees" Type="Self.TBL_Employees" Multiplicity="1" />
+          <End Role="TBL_Monitors" Type="Self.TBL_Monitors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Employees">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_Monitors">
+              <PropertyRef Name="User_Assigned" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Monitors_TBL_Monitors">
+          <End Role="TBL_Monitors" Type="Self.TBL_Monitors" Multiplicity="1" />
+          <End Role="TBL_Monitors1" Type="Self.TBL_Monitors" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Monitors">
+              <PropertyRef Name="ID_Monitor" />
+            </Principal>
+            <Dependent Role="TBL_Monitors1">
+              <PropertyRef Name="ID_Monitor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Monitors_TBL_Status">
+          <End Role="TBL_Status" Type="Self.TBL_Status" Multiplicity="0..1" />
+          <End Role="TBL_Monitors" Type="Self.TBL_Monitors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Status">
+              <PropertyRef Name="ID_Status" />
+            </Principal>
+            <Dependent Role="TBL_Monitors">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Telephones_TBL_Brands">
+          <End Role="TBL_Brands" Type="Self.TBL_Brands" Multiplicity="0..1" />
+          <End Role="TBL_Telephones" Type="Self.TBL_Telephones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Brands">
+              <PropertyRef Name="ID_Brand" />
+            </Principal>
+            <Dependent Role="TBL_Telephones">
+              <PropertyRef Name="Brand" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Telephones_TBL_Companies">
+          <End Role="TBL_Companies" Type="Self.TBL_Companies" Multiplicity="0..1" />
+          <End Role="TBL_Telephones" Type="Self.TBL_Telephones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Companies">
+              <PropertyRef Name="ID_Company" />
+            </Principal>
+            <Dependent Role="TBL_Telephones">
+              <PropertyRef Name="Company" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Telephones_TBL_Employees">
+          <End Role="TBL_Employees" Type="Self.TBL_Employees" Multiplicity="0..1" />
+          <End Role="TBL_Telephones" Type="Self.TBL_Telephones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Employees">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_Telephones">
+              <PropertyRef Name="User_Assigned" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Telephones_TBL_Status">
+          <End Role="TBL_Status" Type="Self.TBL_Status" Multiplicity="0..1" />
+          <End Role="TBL_Telephones" Type="Self.TBL_Telephones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Status">
+              <PropertyRef Name="ID_Status" />
+            </Principal>
+            <Dependent Role="TBL_Telephones">
+              <PropertyRef Name="Status_Tel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="InventarioModelStoreContainer">
+          <EntitySet Name="TBL_Brands" EntityType="Self.TBL_Brands" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_Companies" EntityType="Self.TBL_Companies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_Computer_Types" EntityType="Self.TBL_Computer_Types" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_Computers" EntityType="Self.TBL_Computers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_Employees" EntityType="Self.TBL_Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_History" EntityType="Self.TBL_History" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_Monitors" EntityType="Self.TBL_Monitors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_Status" EntityType="Self.TBL_Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_Telephones" EntityType="Self.TBL_Telephones" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_TBL_Computers_TBL_Brands" Association="Self.FK_TBL_Computers_TBL_Brands">
+            <End Role="TBL_Brands" EntitySet="TBL_Brands" />
+            <End Role="TBL_Computers" EntitySet="TBL_Computers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Computers_TBL_Companies" Association="Self.FK_TBL_Computers_TBL_Companies">
+            <End Role="TBL_Companies" EntitySet="TBL_Companies" />
+            <End Role="TBL_Computers" EntitySet="TBL_Computers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Computers_TBL_Computer_Types" Association="Self.FK_TBL_Computers_TBL_Computer_Types">
+            <End Role="TBL_Computer_Types" EntitySet="TBL_Computer_Types" />
+            <End Role="TBL_Computers" EntitySet="TBL_Computers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Computers_TBL_Employees" Association="Self.FK_TBL_Computers_TBL_Employees">
+            <End Role="TBL_Employees" EntitySet="TBL_Employees" />
+            <End Role="TBL_Computers" EntitySet="TBL_Computers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Computers_TBL_Status" Association="Self.FK_TBL_Computers_TBL_Status">
+            <End Role="TBL_Status" EntitySet="TBL_Status" />
+            <End Role="TBL_Computers" EntitySet="TBL_Computers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Employees_TBL_Companies" Association="Self.FK_TBL_Employees_TBL_Companies">
+            <End Role="TBL_Companies" EntitySet="TBL_Companies" />
+            <End Role="TBL_Employees" EntitySet="TBL_Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_History_TBL_Computers" Association="Self.FK_TBL_History_TBL_Computers">
+            <End Role="TBL_Computers" EntitySet="TBL_Computers" />
+            <End Role="TBL_History" EntitySet="TBL_History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_History_TBL_Employees" Association="Self.FK_TBL_History_TBL_Employees">
+            <End Role="TBL_Employees" EntitySet="TBL_Employees" />
+            <End Role="TBL_History" EntitySet="TBL_History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_History_TBL_Monitors" Association="Self.FK_TBL_History_TBL_Monitors">
+            <End Role="TBL_Monitors" EntitySet="TBL_Monitors" />
+            <End Role="TBL_History" EntitySet="TBL_History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_History_TBL_Telephones" Association="Self.FK_TBL_History_TBL_Telephones">
+            <End Role="TBL_Telephones" EntitySet="TBL_Telephones" />
+            <End Role="TBL_History" EntitySet="TBL_History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Monitors_TBL_Brands" Association="Self.FK_TBL_Monitors_TBL_Brands">
+            <End Role="TBL_Brands" EntitySet="TBL_Brands" />
+            <End Role="TBL_Monitors" EntitySet="TBL_Monitors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Monitors_TBL_Companies" Association="Self.FK_TBL_Monitors_TBL_Companies">
+            <End Role="TBL_Companies" EntitySet="TBL_Companies" />
+            <End Role="TBL_Monitors" EntitySet="TBL_Monitors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Monitors_TBL_Employees" Association="Self.FK_TBL_Monitors_TBL_Employees">
+            <End Role="TBL_Employees" EntitySet="TBL_Employees" />
+            <End Role="TBL_Monitors" EntitySet="TBL_Monitors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Monitors_TBL_Monitors" Association="Self.FK_TBL_Monitors_TBL_Monitors">
+            <End Role="TBL_Monitors" EntitySet="TBL_Monitors" />
+            <End Role="TBL_Monitors1" EntitySet="TBL_Monitors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Monitors_TBL_Status" Association="Self.FK_TBL_Monitors_TBL_Status">
+            <End Role="TBL_Status" EntitySet="TBL_Status" />
+            <End Role="TBL_Monitors" EntitySet="TBL_Monitors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Telephones_TBL_Brands" Association="Self.FK_TBL_Telephones_TBL_Brands">
+            <End Role="TBL_Brands" EntitySet="TBL_Brands" />
+            <End Role="TBL_Telephones" EntitySet="TBL_Telephones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Telephones_TBL_Companies" Association="Self.FK_TBL_Telephones_TBL_Companies">
+            <End Role="TBL_Companies" EntitySet="TBL_Companies" />
+            <End Role="TBL_Telephones" EntitySet="TBL_Telephones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Telephones_TBL_Employees" Association="Self.FK_TBL_Telephones_TBL_Employees">
+            <End Role="TBL_Employees" EntitySet="TBL_Employees" />
+            <End Role="TBL_Telephones" EntitySet="TBL_Telephones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Telephones_TBL_Status" Association="Self.FK_TBL_Telephones_TBL_Status">
+            <End Role="TBL_Status" EntitySet="TBL_Status" />
+            <End Role="TBL_Telephones" EntitySet="TBL_Telephones" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="InventarioModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TBL_Brands">
+          <Key>
+            <PropertyRef Name="ID_Brand" />
+          </Key>
+          <Property Name="ID_Brand" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Brand" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TBL_Computers" Relationship="Self.FK_TBL_Computers_TBL_Brands" FromRole="TBL_Brands" ToRole="TBL_Computers" />
+          <NavigationProperty Name="TBL_Monitors" Relationship="Self.FK_TBL_Monitors_TBL_Brands" FromRole="TBL_Brands" ToRole="TBL_Monitors" />
+          <NavigationProperty Name="TBL_Telephones" Relationship="Self.FK_TBL_Telephones_TBL_Brands" FromRole="TBL_Brands" ToRole="TBL_Telephones" />
+        </EntityType>
+        <EntityType Name="TBL_Companies">
+          <Key>
+            <PropertyRef Name="ID_Company" />
+          </Key>
+          <Property Name="ID_Company" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Company_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="TBL_Computers" Relationship="Self.FK_TBL_Computers_TBL_Companies" FromRole="TBL_Companies" ToRole="TBL_Computers" />
+          <NavigationProperty Name="TBL_Employees" Relationship="Self.FK_TBL_Employees_TBL_Companies" FromRole="TBL_Companies" ToRole="TBL_Employees" />
+          <NavigationProperty Name="TBL_Monitors" Relationship="Self.FK_TBL_Monitors_TBL_Companies" FromRole="TBL_Companies" ToRole="TBL_Monitors" />
+          <NavigationProperty Name="TBL_Telephones" Relationship="Self.FK_TBL_Telephones_TBL_Companies" FromRole="TBL_Companies" ToRole="TBL_Telephones" />
+        </EntityType>
+        <EntityType Name="TBL_Computer_Types">
+          <Key>
+            <PropertyRef Name="ID_Type" />
+          </Key>
+          <Property Name="ID_Type" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="TBL_Computers" Relationship="Self.FK_TBL_Computers_TBL_Computer_Types" FromRole="TBL_Computer_Types" ToRole="TBL_Computers" />
+        </EntityType>
+        <EntityType Name="TBL_Computers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_assign_ID" Type="Int32" Nullable="false" />
+          <Property Name="Machine_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Temporary" Type="Boolean" />
+          <Property Name="Return_Date" Type="DateTime" Precision="0" />
+          <Property Name="Computer_Type" Type="Int32" Nullable="false" />
+          <Property Name="Brand" Type="Int32" />
+          <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Asset_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Company" Type="Int32" />
+          <Property Name="Status" Type="Int32" />
+          <NavigationProperty Name="TBL_Brands" Relationship="Self.FK_TBL_Computers_TBL_Brands" FromRole="TBL_Computers" ToRole="TBL_Brands" />
+          <NavigationProperty Name="TBL_Companies" Relationship="Self.FK_TBL_Computers_TBL_Companies" FromRole="TBL_Computers" ToRole="TBL_Companies" />
+          <NavigationProperty Name="TBL_Computer_Types" Relationship="Self.FK_TBL_Computers_TBL_Computer_Types" FromRole="TBL_Computers" ToRole="TBL_Computer_Types" />
+          <NavigationProperty Name="TBL_Employees" Relationship="Self.FK_TBL_Computers_TBL_Employees" FromRole="TBL_Computers" ToRole="TBL_Employees" />
+          <NavigationProperty Name="TBL_Status" Relationship="Self.FK_TBL_Computers_TBL_Status" FromRole="TBL_Computers" ToRole="TBL_Status" />
+          <NavigationProperty Name="TBL_History" Relationship="Self.FK_TBL_History_TBL_Computers" FromRole="TBL_Computers" ToRole="TBL_History" />
+        </EntityType>
+        <EntityType Name="TBL_Employees">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Position" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Company" Type="Int32" />
+          <Property Name="Employee_Status" Type="Int32" />
+          <NavigationProperty Name="TBL_Companies" Relationship="Self.FK_TBL_Employees_TBL_Companies" FromRole="TBL_Employees" ToRole="TBL_Companies" />
+          <NavigationProperty Name="TBL_Computers" Relationship="Self.FK_TBL_Computers_TBL_Employees" FromRole="TBL_Employees" ToRole="TBL_Computers" />
+          <NavigationProperty Name="TBL_History" Relationship="Self.FK_TBL_History_TBL_Employees" FromRole="TBL_Employees" ToRole="TBL_History" />
+          <NavigationProperty Name="TBL_Monitors" Relationship="Self.FK_TBL_Monitors_TBL_Employees" FromRole="TBL_Employees" ToRole="TBL_Monitors" />
+          <NavigationProperty Name="TBL_Telephones" Relationship="Self.FK_TBL_Telephones_TBL_Employees" FromRole="TBL_Employees" ToRole="TBL_Telephones" />
+        </EntityType>
+        <EntityType Name="TBL_History">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_ID" Type="Int32" Nullable="false" />
+          <Property Name="Item_Type" Type="Int32" Nullable="false" />
+          <Property Name="Device_ID" Type="Int32" Nullable="false" />
+          <Property Name="Acquisition_Date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="TBL_Computers" Relationship="Self.FK_TBL_History_TBL_Computers" FromRole="TBL_History" ToRole="TBL_Computers" />
+          <NavigationProperty Name="TBL_Employees" Relationship="Self.FK_TBL_History_TBL_Employees" FromRole="TBL_History" ToRole="TBL_Employees" />
+          <NavigationProperty Name="TBL_Monitors" Relationship="Self.FK_TBL_History_TBL_Monitors" FromRole="TBL_History" ToRole="TBL_Monitors" />
+          <NavigationProperty Name="TBL_Telephones" Relationship="Self.FK_TBL_History_TBL_Telephones" FromRole="TBL_History" ToRole="TBL_Telephones" />
+        </EntityType>
+        <EntityType Name="TBL_Monitors">
+          <Key>
+            <PropertyRef Name="ID_Monitor" />
+          </Key>
+          <Property Name="ID_Monitor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_Assigned" Type="Int32" Nullable="false" />
+          <Property Name="Temporary" Type="Boolean" />
+          <Property Name="Return_Date" Type="DateTime" Precision="0" />
+          <Property Name="Brand" Type="Int32" />
+          <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Size" Type="Int32" />
+          <Property Name="SN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="Company" Type="Int32" />
+          <Property Name="Asset_ID" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TBL_Brands" Relationship="Self.FK_TBL_Monitors_TBL_Brands" FromRole="TBL_Monitors" ToRole="TBL_Brands" />
+          <NavigationProperty Name="TBL_Companies" Relationship="Self.FK_TBL_Monitors_TBL_Companies" FromRole="TBL_Monitors" ToRole="TBL_Companies" />
+          <NavigationProperty Name="TBL_Employees" Relationship="Self.FK_TBL_Monitors_TBL_Employees" FromRole="TBL_Monitors" ToRole="TBL_Employees" />
+          <NavigationProperty Name="TBL_History" Relationship="Self.FK_TBL_History_TBL_Monitors" FromRole="TBL_Monitors" ToRole="TBL_History" />
+          <NavigationProperty Name="TBL_Monitors1" Relationship="Self.FK_TBL_Monitors_TBL_Monitors" FromRole="TBL_Monitors" ToRole="TBL_Monitors1" />
+          <NavigationProperty Name="TBL_Monitors2" Relationship="Self.FK_TBL_Monitors_TBL_Monitors" FromRole="TBL_Monitors1" ToRole="TBL_Monitors" />
+          <NavigationProperty Name="TBL_Status" Relationship="Self.FK_TBL_Monitors_TBL_Status" FromRole="TBL_Monitors" ToRole="TBL_Status" />
+        </EntityType>
+        <EntityType Name="TBL_Status">
+          <Key>
+            <PropertyRef Name="ID_Status" />
+          </Key>
+          <Property Name="ID_Status" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="TBL_Computers" Relationship="Self.FK_TBL_Computers_TBL_Status" FromRole="TBL_Status" ToRole="TBL_Computers" />
+          <NavigationProperty Name="TBL_Monitors" Relationship="Self.FK_TBL_Monitors_TBL_Status" FromRole="TBL_Status" ToRole="TBL_Monitors" />
+          <NavigationProperty Name="TBL_Telephones" Relationship="Self.FK_TBL_Telephones_TBL_Status" FromRole="TBL_Status" ToRole="TBL_Telephones" />
+        </EntityType>
+        <EntityType Name="TBL_Telephones">
+          <Key>
+            <PropertyRef Name="ID_Tel" />
+          </Key>
+          <Property Name="ID_Tel" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Brand" Type="Int32" />
+          <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="User_Assigned" Type="Int32" />
+          <Property Name="Temporary" Type="Boolean" />
+          <Property Name="Return_Date" Type="DateTime" Precision="0" />
+          <Property Name="Status_Tel" Type="Int32" />
+          <Property Name="Company" Type="Int32" />
+          <Property Name="Asset_ID" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TBL_Brands" Relationship="Self.FK_TBL_Telephones_TBL_Brands" FromRole="TBL_Telephones" ToRole="TBL_Brands" />
+          <NavigationProperty Name="TBL_Companies" Relationship="Self.FK_TBL_Telephones_TBL_Companies" FromRole="TBL_Telephones" ToRole="TBL_Companies" />
+          <NavigationProperty Name="TBL_Employees" Relationship="Self.FK_TBL_Telephones_TBL_Employees" FromRole="TBL_Telephones" ToRole="TBL_Employees" />
+          <NavigationProperty Name="TBL_History" Relationship="Self.FK_TBL_History_TBL_Telephones" FromRole="TBL_Telephones" ToRole="TBL_History" />
+          <NavigationProperty Name="TBL_Status" Relationship="Self.FK_TBL_Telephones_TBL_Status" FromRole="TBL_Telephones" ToRole="TBL_Status" />
+        </EntityType>
+        <Association Name="FK_TBL_Computers_TBL_Brands">
+          <End Role="TBL_Brands" Type="Self.TBL_Brands" Multiplicity="0..1" />
+          <End Role="TBL_Computers" Type="Self.TBL_Computers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Brands">
+              <PropertyRef Name="ID_Brand" />
+            </Principal>
+            <Dependent Role="TBL_Computers">
+              <PropertyRef Name="Brand" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Monitors_TBL_Brands">
+          <End Role="TBL_Brands" Type="Self.TBL_Brands" Multiplicity="0..1" />
+          <End Role="TBL_Monitors" Type="Self.TBL_Monitors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Brands">
+              <PropertyRef Name="ID_Brand" />
+            </Principal>
+            <Dependent Role="TBL_Monitors">
+              <PropertyRef Name="Brand" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Telephones_TBL_Brands">
+          <End Role="TBL_Brands" Type="Self.TBL_Brands" Multiplicity="0..1" />
+          <End Role="TBL_Telephones" Type="Self.TBL_Telephones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Brands">
+              <PropertyRef Name="ID_Brand" />
+            </Principal>
+            <Dependent Role="TBL_Telephones">
+              <PropertyRef Name="Brand" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Computers_TBL_Companies">
+          <End Role="TBL_Companies" Type="Self.TBL_Companies" Multiplicity="0..1" />
+          <End Role="TBL_Computers" Type="Self.TBL_Computers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Companies">
+              <PropertyRef Name="ID_Company" />
+            </Principal>
+            <Dependent Role="TBL_Computers">
+              <PropertyRef Name="Company" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Employees_TBL_Companies">
+          <End Role="TBL_Companies" Type="Self.TBL_Companies" Multiplicity="0..1" />
+          <End Role="TBL_Employees" Type="Self.TBL_Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Companies">
+              <PropertyRef Name="ID_Company" />
+            </Principal>
+            <Dependent Role="TBL_Employees">
+              <PropertyRef Name="Company" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Monitors_TBL_Companies">
+          <End Role="TBL_Companies" Type="Self.TBL_Companies" Multiplicity="0..1" />
+          <End Role="TBL_Monitors" Type="Self.TBL_Monitors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Companies">
+              <PropertyRef Name="ID_Company" />
+            </Principal>
+            <Dependent Role="TBL_Monitors">
+              <PropertyRef Name="Company" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Telephones_TBL_Companies">
+          <End Role="TBL_Companies" Type="Self.TBL_Companies" Multiplicity="0..1" />
+          <End Role="TBL_Telephones" Type="Self.TBL_Telephones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Companies">
+              <PropertyRef Name="ID_Company" />
+            </Principal>
+            <Dependent Role="TBL_Telephones">
+              <PropertyRef Name="Company" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Computers_TBL_Computer_Types">
+          <End Role="TBL_Computer_Types" Type="Self.TBL_Computer_Types" Multiplicity="1" />
+          <End Role="TBL_Computers" Type="Self.TBL_Computers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Computer_Types">
+              <PropertyRef Name="ID_Type" />
+            </Principal>
+            <Dependent Role="TBL_Computers">
+              <PropertyRef Name="Computer_Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Computers_TBL_Employees">
+          <End Role="TBL_Employees" Type="Self.TBL_Employees" Multiplicity="1" />
+          <End Role="TBL_Computers" Type="Self.TBL_Computers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Employees">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_Computers">
+              <PropertyRef Name="User_assign_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Computers_TBL_Status">
+          <End Role="TBL_Status" Type="Self.TBL_Status" Multiplicity="0..1" />
+          <End Role="TBL_Computers" Type="Self.TBL_Computers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Status">
+              <PropertyRef Name="ID_Status" />
+            </Principal>
+            <Dependent Role="TBL_Computers">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_History_TBL_Computers">
+          <End Role="TBL_Computers" Type="Self.TBL_Computers" Multiplicity="1" />
+          <End Role="TBL_History" Type="Self.TBL_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Computers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_History">
+              <PropertyRef Name="Device_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_History_TBL_Employees">
+          <End Role="TBL_Employees" Type="Self.TBL_Employees" Multiplicity="1" />
+          <End Role="TBL_History" Type="Self.TBL_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Employees">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_History">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Monitors_TBL_Employees">
+          <End Role="TBL_Employees" Type="Self.TBL_Employees" Multiplicity="1" />
+          <End Role="TBL_Monitors" Type="Self.TBL_Monitors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Employees">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_Monitors">
+              <PropertyRef Name="User_Assigned" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Telephones_TBL_Employees">
+          <End Role="TBL_Employees" Type="Self.TBL_Employees" Multiplicity="0..1" />
+          <End Role="TBL_Telephones" Type="Self.TBL_Telephones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Employees">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_Telephones">
+              <PropertyRef Name="User_Assigned" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_History_TBL_Monitors">
+          <End Role="TBL_Monitors" Type="Self.TBL_Monitors" Multiplicity="1" />
+          <End Role="TBL_History" Type="Self.TBL_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Monitors">
+              <PropertyRef Name="ID_Monitor" />
+            </Principal>
+            <Dependent Role="TBL_History">
+              <PropertyRef Name="Device_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_History_TBL_Telephones">
+          <End Role="TBL_Telephones" Type="Self.TBL_Telephones" Multiplicity="1" />
+          <End Role="TBL_History" Type="Self.TBL_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Telephones">
+              <PropertyRef Name="ID_Tel" />
+            </Principal>
+            <Dependent Role="TBL_History">
+              <PropertyRef Name="Device_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Monitors_TBL_Monitors">
+          <End Role="TBL_Monitors" Type="Self.TBL_Monitors" Multiplicity="1" />
+          <End Role="TBL_Monitors1" Type="Self.TBL_Monitors" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Monitors">
+              <PropertyRef Name="ID_Monitor" />
+            </Principal>
+            <Dependent Role="TBL_Monitors1">
+              <PropertyRef Name="ID_Monitor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Monitors_TBL_Status">
+          <End Role="TBL_Status" Type="Self.TBL_Status" Multiplicity="0..1" />
+          <End Role="TBL_Monitors" Type="Self.TBL_Monitors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Status">
+              <PropertyRef Name="ID_Status" />
+            </Principal>
+            <Dependent Role="TBL_Monitors">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Telephones_TBL_Status">
+          <End Role="TBL_Status" Type="Self.TBL_Status" Multiplicity="0..1" />
+          <End Role="TBL_Telephones" Type="Self.TBL_Telephones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Status">
+              <PropertyRef Name="ID_Status" />
+            </Principal>
+            <Dependent Role="TBL_Telephones">
+              <PropertyRef Name="Status_Tel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="InventarioEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TBL_Brands" EntityType="Self.TBL_Brands" />
+          <EntitySet Name="TBL_Companies" EntityType="Self.TBL_Companies" />
+          <EntitySet Name="TBL_Computer_Types" EntityType="Self.TBL_Computer_Types" />
+          <EntitySet Name="TBL_Computers" EntityType="Self.TBL_Computers" />
+          <EntitySet Name="TBL_Employees" EntityType="Self.TBL_Employees" />
+          <EntitySet Name="TBL_History" EntityType="Self.TBL_History" />
+          <EntitySet Name="TBL_Monitors" EntityType="Self.TBL_Monitors" />
+          <EntitySet Name="TBL_Status" EntityType="Self.TBL_Status" />
+          <EntitySet Name="TBL_Telephones" EntityType="Self.TBL_Telephones" />
+          <AssociationSet Name="FK_TBL_Computers_TBL_Brands" Association="Self.FK_TBL_Computers_TBL_Brands">
+            <End Role="TBL_Brands" EntitySet="TBL_Brands" />
+            <End Role="TBL_Computers" EntitySet="TBL_Computers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Monitors_TBL_Brands" Association="Self.FK_TBL_Monitors_TBL_Brands">
+            <End Role="TBL_Brands" EntitySet="TBL_Brands" />
+            <End Role="TBL_Monitors" EntitySet="TBL_Monitors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Telephones_TBL_Brands" Association="Self.FK_TBL_Telephones_TBL_Brands">
+            <End Role="TBL_Brands" EntitySet="TBL_Brands" />
+            <End Role="TBL_Telephones" EntitySet="TBL_Telephones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Computers_TBL_Companies" Association="Self.FK_TBL_Computers_TBL_Companies">
+            <End Role="TBL_Companies" EntitySet="TBL_Companies" />
+            <End Role="TBL_Computers" EntitySet="TBL_Computers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Employees_TBL_Companies" Association="Self.FK_TBL_Employees_TBL_Companies">
+            <End Role="TBL_Companies" EntitySet="TBL_Companies" />
+            <End Role="TBL_Employees" EntitySet="TBL_Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Monitors_TBL_Companies" Association="Self.FK_TBL_Monitors_TBL_Companies">
+            <End Role="TBL_Companies" EntitySet="TBL_Companies" />
+            <End Role="TBL_Monitors" EntitySet="TBL_Monitors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Telephones_TBL_Companies" Association="Self.FK_TBL_Telephones_TBL_Companies">
+            <End Role="TBL_Companies" EntitySet="TBL_Companies" />
+            <End Role="TBL_Telephones" EntitySet="TBL_Telephones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Computers_TBL_Computer_Types" Association="Self.FK_TBL_Computers_TBL_Computer_Types">
+            <End Role="TBL_Computer_Types" EntitySet="TBL_Computer_Types" />
+            <End Role="TBL_Computers" EntitySet="TBL_Computers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Computers_TBL_Employees" Association="Self.FK_TBL_Computers_TBL_Employees">
+            <End Role="TBL_Employees" EntitySet="TBL_Employees" />
+            <End Role="TBL_Computers" EntitySet="TBL_Computers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Computers_TBL_Status" Association="Self.FK_TBL_Computers_TBL_Status">
+            <End Role="TBL_Status" EntitySet="TBL_Status" />
+            <End Role="TBL_Computers" EntitySet="TBL_Computers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_History_TBL_Computers" Association="Self.FK_TBL_History_TBL_Computers">
+            <End Role="TBL_Computers" EntitySet="TBL_Computers" />
+            <End Role="TBL_History" EntitySet="TBL_History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_History_TBL_Employees" Association="Self.FK_TBL_History_TBL_Employees">
+            <End Role="TBL_Employees" EntitySet="TBL_Employees" />
+            <End Role="TBL_History" EntitySet="TBL_History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Monitors_TBL_Employees" Association="Self.FK_TBL_Monitors_TBL_Employees">
+            <End Role="TBL_Employees" EntitySet="TBL_Employees" />
+            <End Role="TBL_Monitors" EntitySet="TBL_Monitors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Telephones_TBL_Employees" Association="Self.FK_TBL_Telephones_TBL_Employees">
+            <End Role="TBL_Employees" EntitySet="TBL_Employees" />
+            <End Role="TBL_Telephones" EntitySet="TBL_Telephones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_History_TBL_Monitors" Association="Self.FK_TBL_History_TBL_Monitors">
+            <End Role="TBL_Monitors" EntitySet="TBL_Monitors" />
+            <End Role="TBL_History" EntitySet="TBL_History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_History_TBL_Telephones" Association="Self.FK_TBL_History_TBL_Telephones">
+            <End Role="TBL_Telephones" EntitySet="TBL_Telephones" />
+            <End Role="TBL_History" EntitySet="TBL_History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Monitors_TBL_Monitors" Association="Self.FK_TBL_Monitors_TBL_Monitors">
+            <End Role="TBL_Monitors" EntitySet="TBL_Monitors" />
+            <End Role="TBL_Monitors1" EntitySet="TBL_Monitors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Monitors_TBL_Status" Association="Self.FK_TBL_Monitors_TBL_Status">
+            <End Role="TBL_Status" EntitySet="TBL_Status" />
+            <End Role="TBL_Monitors" EntitySet="TBL_Monitors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Telephones_TBL_Status" Association="Self.FK_TBL_Telephones_TBL_Status">
+            <End Role="TBL_Status" EntitySet="TBL_Status" />
+            <End Role="TBL_Telephones" EntitySet="TBL_Telephones" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="InventarioModelStoreContainer" CdmEntityContainer="InventarioEntities">
+          <EntitySetMapping Name="TBL_Brands">
+            <EntityTypeMapping TypeName="InventarioModel.TBL_Brands">
+              <MappingFragment StoreEntitySet="TBL_Brands">
+                <ScalarProperty Name="ID_Brand" ColumnName="ID_Brand" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_Companies">
+            <EntityTypeMapping TypeName="InventarioModel.TBL_Companies">
+              <MappingFragment StoreEntitySet="TBL_Companies">
+                <ScalarProperty Name="ID_Company" ColumnName="ID_Company" />
+                <ScalarProperty Name="Company_Name" ColumnName="Company_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_Computer_Types">
+            <EntityTypeMapping TypeName="InventarioModel.TBL_Computer_Types">
+              <MappingFragment StoreEntitySet="TBL_Computer_Types">
+                <ScalarProperty Name="ID_Type" ColumnName="ID_Type" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_Computers">
+            <EntityTypeMapping TypeName="InventarioModel.TBL_Computers">
+              <MappingFragment StoreEntitySet="TBL_Computers">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="User_assign_ID" ColumnName="User_assign_ID" />
+                <ScalarProperty Name="Machine_Name" ColumnName="Machine_Name" />
+                <ScalarProperty Name="Temporary" ColumnName="Temporary" />
+                <ScalarProperty Name="Return_Date" ColumnName="Return_Date" />
+                <ScalarProperty Name="Computer_Type" ColumnName="Computer_Type" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="SN" ColumnName="SN" />
+                <ScalarProperty Name="Asset_ID" ColumnName="Asset_ID" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_Employees">
+            <EntityTypeMapping TypeName="InventarioModel.TBL_Employees">
+              <MappingFragment StoreEntitySet="TBL_Employees">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="Employee_Status" ColumnName="Employee_Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_History">
+            <EntityTypeMapping TypeName="InventarioModel.TBL_History">
+              <MappingFragment StoreEntitySet="TBL_History">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Item_Type" ColumnName="Item_Type" />
+                <ScalarProperty Name="Device_ID" ColumnName="Device_ID" />
+                <ScalarProperty Name="Acquisition_Date" ColumnName="Acquisition_Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_Monitors">
+            <EntityTypeMapping TypeName="InventarioModel.TBL_Monitors">
+              <MappingFragment StoreEntitySet="TBL_Monitors">
+                <ScalarProperty Name="ID_Monitor" ColumnName="ID_Monitor" />
+                <ScalarProperty Name="User_Assigned" ColumnName="User_Assigned" />
+                <ScalarProperty Name="Temporary" ColumnName="Temporary" />
+                <ScalarProperty Name="Return_Date" ColumnName="Return_Date" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="SN" ColumnName="SN" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="Asset_ID" ColumnName="Asset_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_Status">
+            <EntityTypeMapping TypeName="InventarioModel.TBL_Status">
+              <MappingFragment StoreEntitySet="TBL_Status">
+                <ScalarProperty Name="ID_Status" ColumnName="ID_Status" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_Telephones">
+            <EntityTypeMapping TypeName="InventarioModel.TBL_Telephones">
+              <MappingFragment StoreEntitySet="TBL_Telephones">
+                <ScalarProperty Name="ID_Tel" ColumnName="ID_Tel" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="SN" ColumnName="SN" />
+                <ScalarProperty Name="User_Assigned" ColumnName="User_Assigned" />
+                <ScalarProperty Name="Temporary" ColumnName="Temporary" />
+                <ScalarProperty Name="Return_Date" ColumnName="Return_Date" />
+                <ScalarProperty Name="Status_Tel" ColumnName="Status_Tel" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="Asset_ID" ColumnName="Asset_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
