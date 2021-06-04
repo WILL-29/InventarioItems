@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="InventarioModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="InventarioModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="TBL_Brands">
           <Key>
             <PropertyRef Name="ID_Brand" />
@@ -47,7 +47,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" />
           <Property Name="Position" Type="nvarchar" MaxLength="200" />
           <Property Name="Company" Type="int" />
@@ -61,7 +61,7 @@
           <Property Name="User_ID" Type="int" Nullable="false" />
           <Property Name="Item_Type" Type="int" Nullable="false" />
           <Property Name="Device_ID" Type="int" Nullable="false" />
-          <Property Name="Acquisition_Date" Type="date" />
+          <Property Name="Acquisition_Date" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="TBL_Monitors">
           <Key>
@@ -416,8 +416,7 @@
             <End Role="TBL_Telephones" EntitySet="TBL_Telephones" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="InventarioModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -496,7 +495,7 @@
           <Property Name="User_ID" Type="Int32" Nullable="false" />
           <Property Name="Item_Type" Type="Int32" Nullable="false" />
           <Property Name="Device_ID" Type="Int32" Nullable="false" />
-          <Property Name="Acquisition_Date" Type="DateTime" Precision="0" />
+          <Property Name="Acquisition_Date" Type="DateTime" Precision="0" Nullable="false" />
           <NavigationProperty Name="TBL_Computers" Relationship="Self.FK_TBL_History_TBL_Computers" FromRole="TBL_History" ToRole="TBL_Computers" />
           <NavigationProperty Name="TBL_Employees" Relationship="Self.FK_TBL_History_TBL_Employees" FromRole="TBL_History" ToRole="TBL_Employees" />
           <NavigationProperty Name="TBL_Monitors" Relationship="Self.FK_TBL_History_TBL_Monitors" FromRole="TBL_History" ToRole="TBL_Monitors" />

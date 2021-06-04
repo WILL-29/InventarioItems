@@ -42,7 +42,7 @@
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="100" />
     <Property Name="Position" Type="nvarchar" MaxLength="200" />
     <Property Name="Company" Type="int" />
@@ -56,7 +56,7 @@
     <Property Name="User_ID" Type="int" Nullable="false" />
     <Property Name="Item_Type" Type="int" Nullable="false" />
     <Property Name="Device_ID" Type="int" Nullable="false" />
-    <Property Name="Acquisition_Date" Type="date" />
+    <Property Name="Acquisition_Date" Type="date" Nullable="false" />
   </EntityType>
   <EntityType Name="TBL_Monitors">
     <Key>

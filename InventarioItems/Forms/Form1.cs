@@ -74,7 +74,7 @@ namespace InventarioItems.Forms
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+
             Item_Consu_CB.Text = "1 - Computadoras";
 
             //dbcontext = se refiere  al nombre que tiene el nombre que tiene la base de datos
@@ -147,9 +147,14 @@ namespace InventarioItems.Forms
             Company_Employee_CB.DisplayMember = "Company_Name";
             Company_Employee_CB.ValueMember = "ID_Company";
 
+            //CompboBox Status en Registrar Empleados
+            Status_Emp_CB.DataSource = dbCBs.TBL_Status.Where(w => w.ID_Status == 4 || w.ID_Status == 5).ToList();
+            Status_Emp_CB.DisplayMember = "Status";
+            Status_Emp_CB.ValueMember = "ID_Status";
 
-            //ELIMINAR VALOR POR DEFECTO A LOS DATE
+            //Poner el valor por defecto que yo quiera
             Return_PC_Date.Text = "";
+           // Status_Emp_CB.
         }
         private void UserAssigned_CB_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -235,10 +240,14 @@ namespace InventarioItems.Forms
             telregedit.Temporary = Temp_Tel_Chk.Checked;
             telregedit.User_Assigned = Convert.ToInt32(User_Tel_CB.SelectedValue);
 
-            InventarioEntities Hola = new InventarioEntities();
-            Hola.TBL_Telephones.Add(telregedit);
-            Hola.SaveChanges();
-
+            if (SqlMethods.ValidExist(telregedit) == false)
+            {
+                SqlMethods.AddTelephone(telregedit);
+            }
+            else
+            {
+                MessageBox.Show("Ya existe un teléfono con este serial", "Información");
+            }
             
 
         }
@@ -341,6 +350,16 @@ namespace InventarioItems.Forms
         }
         private void button4_Click(object sender, EventArgs e)
         {
+            
+            TBL_Employees Emp = new TBL_Employees();
+
+            Emp.Name = Name_Employee_TB.Text;
+            Emp.Position = Position_Employee_TB.Text;
+            Emp.Company = Convert.ToInt32(Company_Employee_CB.SelectedValue);
+            Emp.Employee_Status = Convert.ToInt32(Status_Emp_CB.SelectedValue);
+
+            SqlMethods.AddEmploee(Emp);
+            
         }
         
 

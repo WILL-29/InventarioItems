@@ -18,7 +18,7 @@ namespace InventarioItems.Model
         public int User_ID { get; set; }
         public int Item_Type { get; set; }
         public int Device_ID { get; set; }
-        public Nullable<System.DateTime> Acquisition_Date { get; set; }
+        public System.DateTime Acquisition_Date { get; set; }
     
         public virtual TBL_Computers TBL_Computers { get; set; }
         public virtual TBL_Employees TBL_Employees { get; set; }

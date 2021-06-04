@@ -48,7 +48,9 @@ namespace InventarioItems.Model
             {
                 return false;
             }
+    
        }
+        
 
     //Agregar una computadora
     static public void AgregarPc(TBL_Computers pc)
@@ -60,13 +62,32 @@ namespace InventarioItems.Model
         }
 
         //Agregar un monitor
-        static public void AgregarMonitor(TBL_Monitors moni)
+    static public void AgregarMonitor(TBL_Monitors moni)
         {
             InventarioEntities db = new InventarioEntities();
             db.TBL_Monitors.Add(moni);
             db.SaveChanges();
             System.Windows.Forms.MessageBox.Show("Monitor registrado exitosamente", "Información");
         }
+
+        //Agregar Empleado
+    static public void AddEmploee(TBL_Employees Emp)
+        {
+            InventarioEntities db = new InventarioEntities();
+            db.TBL_Employees.Add(Emp);
+            db.SaveChanges();
+            System.Windows.Forms.MessageBox.Show("Empleado Registrado exitosamente.", "Información");
+        }
+        //Agregar Cisco IP Telephone
+    static public void  AddTelephone(TBL_Telephones tel)
+        {
+            InventarioEntities db = new InventarioEntities();
+            db.TBL_Telephones.Add(tel);
+            db.SaveChanges();
+            System.Windows.Forms.MessageBox.Show("Teléfono Registrado existosamente.", "Información");
+
+        }
+
     }                                    
 
 }

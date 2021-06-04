@@ -102,10 +102,11 @@
             this.Brand_Tel_CB = new System.Windows.Forms.ComboBox();
             this.label20 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.Status_Emp_CB = new System.Windows.Forms.ComboBox();
             this.button4 = new System.Windows.Forms.Button();
             this.Company_Employee_CB = new System.Windows.Forms.ComboBox();
             this.label30 = new System.Windows.Forms.Label();
-            this.Pocisition_Employee_TB = new System.Windows.Forms.TextBox();
+            this.Position_Employee_TB = new System.Windows.Forms.TextBox();
             this.label29 = new System.Windows.Forms.Label();
             this.Name_Employee_TB = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
@@ -873,10 +874,11 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.Status_Emp_CB);
             this.tabPage5.Controls.Add(this.button4);
             this.tabPage5.Controls.Add(this.Company_Employee_CB);
             this.tabPage5.Controls.Add(this.label30);
-            this.tabPage5.Controls.Add(this.Pocisition_Employee_TB);
+            this.tabPage5.Controls.Add(this.Position_Employee_TB);
             this.tabPage5.Controls.Add(this.label29);
             this.tabPage5.Controls.Add(this.Name_Employee_TB);
             this.tabPage5.Controls.Add(this.label28);
@@ -888,9 +890,18 @@
             this.tabPage5.Text = "Registrar empleados";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
+            // Status_Emp_CB
+            // 
+            this.Status_Emp_CB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Status_Emp_CB.FormattingEnabled = true;
+            this.Status_Emp_CB.Location = new System.Drawing.Point(165, 84);
+            this.Status_Emp_CB.Name = "Status_Emp_CB";
+            this.Status_Emp_CB.Size = new System.Drawing.Size(128, 21);
+            this.Status_Emp_CB.TabIndex = 7;
+            // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(47, 138);
+            this.button4.Location = new System.Drawing.Point(19, 111);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 6;
@@ -916,12 +927,12 @@
             this.label30.TabIndex = 4;
             this.label30.Text = "Compañía";
             // 
-            // Pocisition_Employee_TB
+            // Position_Employee_TB
             // 
-            this.Pocisition_Employee_TB.Location = new System.Drawing.Point(165, 32);
-            this.Pocisition_Employee_TB.Name = "Pocisition_Employee_TB";
-            this.Pocisition_Employee_TB.Size = new System.Drawing.Size(128, 20);
-            this.Pocisition_Employee_TB.TabIndex = 3;
+            this.Position_Employee_TB.Location = new System.Drawing.Point(165, 32);
+            this.Position_Employee_TB.Name = "Position_Employee_TB";
+            this.Position_Employee_TB.Size = new System.Drawing.Size(128, 20);
+            this.Position_Employee_TB.TabIndex = 3;
             // 
             // label29
             // 
@@ -1043,7 +1054,7 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.ComboBox Company_Employee_CB;
         private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.TextBox Pocisition_Employee_TB;
+        private System.Windows.Forms.TextBox Position_Employee_TB;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.TextBox Name_Employee_TB;
         private System.Windows.Forms.Label label28;
@@ -1056,6 +1067,7 @@
         private System.Windows.Forms.ComboBox Item_Consu_CB;
         private System.Windows.Forms.DateTimePicker Return_PC_Date;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.ComboBox Status_Emp_CB;
     }
 }
 

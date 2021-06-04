@@ -75,7 +75,7 @@
     <Property Name="User_ID" Type="Int32" Nullable="false" />
     <Property Name="Item_Type" Type="Int32" Nullable="false" />
     <Property Name="Device_ID" Type="Int32" Nullable="false" />
-    <Property Name="Acquisition_Date" Type="DateTime" Precision="0" />
+    <Property Name="Acquisition_Date" Type="DateTime" Precision="0" Nullable="false" />
     <NavigationProperty Name="TBL_Computers" Relationship="Self.FK_TBL_History_TBL_Computers" FromRole="TBL_History" ToRole="TBL_Computers" />
     <NavigationProperty Name="TBL_Employees" Relationship="Self.FK_TBL_History_TBL_Employees" FromRole="TBL_History" ToRole="TBL_Employees" />
     <NavigationProperty Name="TBL_Monitors" Relationship="Self.FK_TBL_History_TBL_Monitors" FromRole="TBL_History" ToRole="TBL_Monitors" />
