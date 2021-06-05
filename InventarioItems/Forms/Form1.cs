@@ -193,23 +193,27 @@ namespace InventarioItems.Forms
             MoniRegModi.Company = Convert.ToInt16(Company_Moni_CB.SelectedValue);
             MoniRegModi.Asset_ID = Asset_Moni_TB.Text;
             MoniRegModi.Status = Convert.ToInt16(Status_Moni_CB.SelectedValue);
-            if (Size_Moni_TB.Text == "")
-            {
-                Size_Moni_TB.Text = "0";
-            }
-            MoniRegModi.Size = Convert.ToInt32(Size_Moni_TB.Text);
             MoniRegModi.User_Assigned = Convert.ToInt16(User_Monit_CB.SelectedValue);
             MoniRegModi.Temporary = Temp_Moni_Chk.Checked;
             MoniRegModi.Return_Date = Return_Moni_Date.Value;
-
             if (SqlMethods.ValidExist(MoniRegModi) == true)
             {
                 MessageBox.Show("Ya existe un monitor con este serial", "Información");
             }
             else
             {
-                SqlMethods.AgregarMonitor(MoniRegModi);
+                try
+                {
+                    Convert.ToInt32(Size_Moni_TB.Text);
+                    MoniRegModi.Size = Convert.ToInt32(Size_Moni_TB.Text);
+                    SqlMethods.AgregarMonitor(MoniRegModi);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Digite una cantidad entera en el campo Size", "Informacióna");
+                }
             }
+
         }
 
         private void Temp_PC_Chk_CheckedChanged(object sender, EventArgs e)
@@ -239,15 +243,22 @@ namespace InventarioItems.Forms
             telregedit.Status_Tel = Convert.ToInt32(Status_Tel_CB.SelectedValue);
             telregedit.Temporary = Temp_Tel_Chk.Checked;
             telregedit.User_Assigned = Convert.ToInt32(User_Tel_CB.SelectedValue);
-
-            if (SqlMethods.ValidExist(telregedit) == false)
+            if (telregedit.SN == "")
             {
-                SqlMethods.AddTelephone(telregedit);
+                MessageBox.Show("El teléfono debe tener un serial number", "Información");
             }
             else
             {
-                MessageBox.Show("Ya existe un teléfono con este serial", "Información");
+                if (SqlMethods.ValidExist(telregedit) == false)
+                {
+                    SqlMethods.AddTelephone(telregedit);
+                }
+                else
+                {
+                    MessageBox.Show("Ya existe un teléfono con este serial", "Información");
+                }
             }
+            
             
 
         }
@@ -358,8 +369,14 @@ namespace InventarioItems.Forms
             Emp.Company = Convert.ToInt32(Company_Employee_CB.SelectedValue);
             Emp.Employee_Status = Convert.ToInt32(Status_Emp_CB.SelectedValue);
 
-            SqlMethods.AddEmploee(Emp);
-            
+            if (Emp.Name == "")
+            {
+                MessageBox.Show("El Empleado debe tener un nombre","Información");
+            }
+            else
+            {
+                SqlMethods.AddEmploee(Emp);
+            }         
         }
         
 
