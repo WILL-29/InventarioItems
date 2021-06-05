@@ -27,7 +27,7 @@ namespace InventarioItems.Model
         {
             InventarioEntities db = new InventarioEntities();
             var data = db.TBL_Monitors.ToList();
-            if (data.Any(w => w.SN.Contains(moni.SN)))
+            if (data.Any(w => w.SN == moni.SN))
             {
                 return true;
             }

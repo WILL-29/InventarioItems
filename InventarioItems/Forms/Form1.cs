@@ -196,9 +196,9 @@ namespace InventarioItems.Forms
             MoniRegModi.User_Assigned = Convert.ToInt16(User_Monit_CB.SelectedValue);
             MoniRegModi.Temporary = Temp_Moni_Chk.Checked;
             MoniRegModi.Return_Date = Return_Moni_Date.Value;
-            if (SqlMethods.ValidExist(MoniRegModi) == true)
+            if (SqlMethods.ValidExist(MoniRegModi) == true || MoniRegModi.SN == "")
             {
-                MessageBox.Show("Ya existe un monitor con este serial", "Información");
+                MessageBox.Show("El serial number ya existe o está en blanco", "Información");
             }
             else
             {
