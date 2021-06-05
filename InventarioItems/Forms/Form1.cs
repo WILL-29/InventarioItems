@@ -210,7 +210,7 @@ namespace InventarioItems.Forms
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Digite una cantidad entera en el campo Size", "Informacióna");
+                    MessageBox.Show("Digite una cantidad entera en el campo Size", "Información");
                 }
             }
 
