@@ -371,7 +371,11 @@ namespace InventarioItems.Forms
 
             if (Emp.Name == "")
             {
-                MessageBox.Show("El Empleado debe tener un nombre","Información");
+                var result = MessageBox.Show("El Empleado debe tener un nombre","Información",MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+                if (result == DialogResult.Yes)
+                {
+
+                }
             }
             else
             {
