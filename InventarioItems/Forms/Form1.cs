@@ -316,7 +316,6 @@ namespace InventarioItems.Forms
                 dataGridView1.DataSource = datadata.ToList();
 
                 //Aquí modificamos los nombres de las columnas, por ahora solo me interesa modificar este
-
                 dataGridView1.Columns[0].HeaderText = "Nombre de equipo";
             }
             else if (Item_Consu_CB.Text == "2 - Monitores")
